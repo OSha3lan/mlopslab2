@@ -1,0 +1,62 @@
+schema: '2.0'
+stages:
+  preprocess:
+    cmd: python preprocess.py
+    deps:
+    - path: WineQT.csv
+      hash: md5
+      md5: e2e57e4c41e6ee0213fb12e5a70f4bfb
+      size: 78057
+    - path: preprocess.py
+      hash: md5
+      md5: 129bbf22948b21c8ebae014f1dbd031b
+      size: 388
+    outs:
+    - path: test.csv
+      hash: md5
+      md5: aa479674968e37c292124ef0f33c897f
+      size: 14805
+    - path: train.csv
+      hash: md5
+      md5: 4a13a3689eddb741f03ce63a3374a055
+      size: 58315
+  train:
+    cmd: python train.py
+    deps:
+    - path: train.csv
+      hash: md5
+      md5: 4a13a3689eddb741f03ce63a3374a055
+      size: 58315
+    - path: train.py
+      hash: md5
+      md5: 1753c424f9b0ff6378337ab9b2d010e8
+      size: 579
+    outs:
+    - path: models/model.joblib
+      hash: md5
+      md5: abedd4c7d20de7fa2ff3ff649cbdc0a0
+      size: 4638841
+  validate:
+    cmd: python validate.py
+    deps:
+    - path: models/model.joblib
+      hash: md5
+      md5: abedd4c7d20de7fa2ff3ff649cbdc0a0
+      size: 4638841
+    - path: test.csv
+      hash: md5
+      md5: aa479674968e37c292124ef0f33c897f
+      size: 14805
+    - path: validate.py
+      hash: md5
+      md5: 1e052ddc3cb6a695fe75255825320fba
+      size: 1220
+    outs:
+    - path: confusion_matrix.png
+      hash: md5
+      md5: 539b61fcade017aab258f9200e007269
+      size: 23769
+    - path: metrics.json
+      hash: md5
+      md5: 1775944ddee381b005b8a4532a0da8a6
+      size: 40
