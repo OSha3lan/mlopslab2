@@ -14,8 +14,8 @@ X_train = x.drop(y, axis=1)
 y_train = x[y]
 
 
-model = LogisticRegression(random_state=42, max_iter=1000)
-print("Training Logistic Regression model...")
+#model = LogisticRegression(random_state=42, max_iter=1000)
+#print("Training Logistic Regression model...")
 
 
 model = RandomForestClassifier(random_state=42)
