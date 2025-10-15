@@ -1,0 +1,39 @@
+
+stages:
+  preprocess:
+    
+    cmd: python preprocess.py
+    deps:
+      - preprocess.py
+
+      - WineQT.csv 
+    outs:
+      
+      - train.csv
+      - test.csv
+
+  train:
+    
+    cmd: python train.py
+    deps:
+      - train.py
+      - train.csv 
+    outs:
+      
+      - models/model.joblib
+
+  validate:
+    
+    cmd: python validate.py
+    deps:
+      - validate.py
+      - test.csv      
+      - models/model.joblib 
+    metrics:
+      
+      - metrics.json:
+          cache: false 
+    plots:
+      
+      - confusion_matrix.png:
+          cache: false 
