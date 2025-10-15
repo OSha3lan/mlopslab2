@@ -2,4 +2,3 @@
     remote = mylocal
 ['remote "mylocal"']
     url = ../../dvc_remote
-#
